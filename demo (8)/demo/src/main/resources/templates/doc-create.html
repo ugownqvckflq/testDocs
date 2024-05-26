@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Create document</title>
+</head>
+<body>
+<form action="#" th:action="@{/document-create}" th:object="${document}" method="post">
+    <label for="title">Title</label>
+    <input type="text" th:field="*{title}" id="title" placeholder="Title">
+
+    <label for="type">Type</label>
+    <input type="text" th:field="*{type}" id="type" placeholder="Type">
+
+    <label for="date">Date</label>
+    <input type="date" th:field="*{date}" id="date" placeholder="Date">
+
+    <label for="details">Details</label>
+    <input type="text" th:field="*{details}" id="details" placeholder="Details">
+
+    <input type="submit" value="Create Document">
+</form>
+</body>
+</html>

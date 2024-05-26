@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Documents</title>
+</head>
+<body>
+<form action="#" th:action="@{/documents}" method="get">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" placeholder="Enter title">
+
+    <label for="type">Type:</label>
+    <input type="text" id="type" name="type" placeholder="Enter type">
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" placeholder="Enter date">
+
+    <input type="submit" value="Search">
+</form>
+
+<div th:switch="${documents}">
+    <h2 th:case="null">No documents found!</h2>
+    <div th:case="*">
+        <h2>Documents</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Creation Date</th>
+                <th>Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="document : ${documents}">
+                <td th:text="${document.id}"></td>
+                <td th:text="${document.title}"></td>
+                <td th:text="${document.type}"></td>
+                <td th:text="${document.date}"></td>
+                <td th:text="${document.details}"></td>
+                <td><a th:href="@{document-update/{id}(id=${document.id})}">Edit</a></td>
+                <td><a th:href="@{document-delete/{id}(id=${document.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/document-create">Create document</a></p>
+</div>
+</body>
+</html>
